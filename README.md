@@ -28,7 +28,7 @@ To run the script, you will need the following things:
 
     - `Title`  ( `title` ): The title of the paper.
 
-    - `Status` ( `select` ): Set to `Done` when the paper was read, empty otherwise. Can take other values.
+    - `Status` ( `select` ): Set to `Done` when the paper was read, empty otherwise. Can take other values. Managed by using a "Read" and a "To Read" folder inside Papepile.
 
     - `Authors` ( `multi_select` ): The paper's authors. Corresponds to the `Authors` field in the Paperpile export, with only lastnames and first letter of firstnames.
 
@@ -38,9 +38,9 @@ To run the script, you will need the following things:
 
     - `Link` ( `url` ): Link to the paper. If multiple links are available, arXiv links are preferred.
 
-    - `Categories` ( `multi_select` ): The categories the paper belongs to. Define the macro-fields to which the paper belongs.
+    - `Categories` ( `multi_select` ): The categories the paper belongs to. Define the macro-fields to which the paper belongs. These are extracted from the labels that were assigned to the paper on Paperpile.
 
-    - `Methods` ( `multi_select` ): The methods and aspects investigated in the paper. Can be whatever, from architectures (e.g. CNN, Transformer) to sub-topics (e.g. Probing tasks for interpretability research).
+    - `Methods` ( `multi_select` ): The methods and aspects investigated in the paper. Can be whatever, from architectures (e.g. CNN, Transformer) to sub-topics. On Paperpile, these correspond to labels having the following format: `category_shortname - method_name` (e.g. Probing tasks for interpretability research could be `INT - Probing`). Refer to the CSV file for an example.
 
 4. A Notion API key. To retrieve the API key, follow the directions provided in the [Notion API Getting Started](https://developers.notion.com/docs/getting-started). You will also need to add permission for the integration on the database from the previous point.
 
