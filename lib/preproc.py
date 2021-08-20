@@ -12,7 +12,10 @@ def format_entry(entry: Dict[str, str], journals: List[Dict[str, str]], conferen
     """ Produces a dictionary in format column_name: {type: x, value: y} for each value in the entry"""
     # Select the conference shortname based on proceedings
     if entry['Item type'] == 'Journal Article':
-        venue = [j['short'] for j in journals if j['name'] == entry['Full journal'].strip()]
+        if 'Full journal' in entry.keys() and entry['Full journal']:
+            venue = [j['short'] for j in journals if j['name'] == entry['Full journal'].strip()]
+        else:
+            venue = [j['short'] for j in journals if j['name'] == entry['Journal'].strip()]
     elif entry['Item type'] == 'Conference Paper':
         venue = [
             c['short'] for c in conferences if c['name'] == match(
@@ -30,7 +33,7 @@ def format_entry(entry: Dict[str, str], journals: List[Dict[str, str]], conferen
         venue.append('arXiv')
     else:
         selected_link = links[0]
-    date = entry['Date published'].strip()
+    date = entry['Date published'].strip() if 'Date published' in entry.keys() else ''
     if len(date) > 10:
         date = date[:10]
     elif len(date) == 4 or not date:
