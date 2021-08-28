@@ -30,7 +30,7 @@ journals:
     short: AI
   - name: Journal of Artificial Intelligence Research
     short: JAIR
-  - name: Computational Linguistics
+  - name: Computational linguistics (Association for Computational Linguistics)
     short: CL
   - name: Transactions of the Association for Computational Linguistics
     short: TACL
@@ -53,7 +53,7 @@ conferences:
     short: WMT
   - name: International Conference on Computational Linguistics
     short: COLING
-  - name: Language Resources and Evaluation Conference
+  - name: Language Resources and Evaluation
     short: LREC
   - name: Computer Vision and Pattern Recognition
     short: CVPR

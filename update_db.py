@@ -21,7 +21,7 @@ def hamming_distance(x, y):
 
 
 def check_identical(entry: Dict[str, Dict[str, Any]], page: Dict[str, Any]) -> bool:
-        for key, val in [(k,v) for k,v in page.items() if k not in ['id', 'Institutions', 'Date']]:
+        for key, val in [(k,v) for k,v in page.items() if k not in ['id', 'Institutions', 'Date', 'Code']]:
             if key == 'Status' and val == 'Reading':
             	continue
             if isinstance(val, str):

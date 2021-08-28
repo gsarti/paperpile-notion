@@ -19,12 +19,14 @@ def format_entry(entry: Dict[str, str], journals: List[Dict[str, str]], conferen
     elif entry['Item type'] == 'Conference Paper':
         venue = [
             c['short'] for c in conferences if c['name'] == match(
-            entry['Proceedings title'].strip(), [c['name'] for c in conferences]
+            entry['Proceedings title'].strip().replace('{','').replace('}',''), [c['name'] for c in conferences]
         )]
         if not venue:
             venue = [entry['Proceedings title'].strip()]
     elif entry['Item type'] == 'Preprint Manuscript':
         venue = [entry['Archive prefix'].strip()]
+    elif entry['Item type'] == 'Book Chapter':
+        venue = [entry['Book title'].strip()]
     # Arxiv links are privileged
     links = [x for x in entry['URLs'].strip().split(';')]
     arxiv_links = [x for x in links if 'arxiv' in x]
