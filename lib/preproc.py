@@ -46,7 +46,7 @@ def format_entry(entry: Dict[str, str], journals: List[Dict[str, str]], conferen
     formatted_entry = {
         'Item type':  {'type': 'select',       'value': entry['Item type'].strip()},
         'Authors':    {'type': 'multi_select', 'value': entry['Authors'].strip().split(',')},
-        'Title':      {'type': 'title',        'value': entry['Title'].strip()},
+        'Title':      {'type': 'title',        'value': entry['Title'].strip().replace('{','').replace('}','')},
         'Venues':     {'type': 'multi_select', 'value': venue},
         'Date':       {'type': 'date',         'value': date},
         'Link':       {'type': 'url',          'value': selected_link},

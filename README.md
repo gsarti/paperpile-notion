@@ -4,6 +4,8 @@ This repository provides a simple integration between [Paperpile](https://paperp
 
 This is a work in progress, and is currently intended for personal use only (no support, no warranty, no liability, etc.).
 
+**New**: The WIP script `download_paperpile_folder.py` provides an automated way to download a folder from a Paperpile account. This script uses Chromium and Selenium, so the chrome drivers must be placed under the path to make it work. Check the args for more information. 
+
 ## Installation
 
 Simply clone the repo locally and install the dependencies, preferably in a virtualenv:
@@ -11,7 +13,7 @@ Simply clone the repo locally and install the dependencies, preferably in a virt
 ```shell
 git clone https://github.com/gsarti/paperpile-notion.git
 cd paperpile-notion
-pip install pyyaml notion-database rich
+pip install -r requirements.txt
 ```
 
 ## Requirements
@@ -49,12 +51,23 @@ To run the script, you will need the following things:
 Once everything is in place, simply run the script as:
 
 ```shell
-python update_db.py \
+python update_notion_db.py \
     --input data.csv \
     --config config.yaml \
     --database <YOUR_DB_ID> \
     --token <YOUR_NOTION_API_KEY>
 ```
+
+The experimental script to auto-download a folder from Paperpile can be run as:
+
+```shell
+python download_paperpile_folder.py \
+    --username <YOUR_GOOGLE_USERNAME> \
+    --password <YOUR_GOOGLE_PASSWORD> \
+    --folder_id <YOUR_FOLDER_ID> # e.g. pp-folder-2cb1833f-582f-0000-ad59-567be5718692
+```
+
+This will download the folder content in CSV format in the default download location.
 
 Example output, adding a new paper to the database:
 

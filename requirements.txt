@@ -1,0 +1,6 @@
+selenium==4.0.0b4
+undetected-chromedriver==3.0.3
+PyYAML==5.4.1
+requests==2.26.0
+rich==10.7.0
+notion-database==20210513.7
