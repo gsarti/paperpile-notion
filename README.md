@@ -13,6 +13,8 @@ Simply clone the repo locally and install the dependencies, preferably in a virt
 ```shell
 git clone https://github.com/gsarti/paperpile-notion.git
 cd paperpile-notion
+python3 -m venv venv
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -61,7 +63,7 @@ python update_notion_db.py \
 The experimental script to auto-download a folder from Paperpile can be run as:
 
 ```shell
-python download_paperpile_folder.py \
+python download_paperpile_dir.py \
     --username <YOUR_GOOGLE_USERNAME> \
     --password <YOUR_GOOGLE_PASSWORD> \
     --folder_id <YOUR_FOLDER_ID> # e.g. pp-folder-2cb1833f-582f-0000-ad59-567be5718692

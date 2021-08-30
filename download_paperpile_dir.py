@@ -63,7 +63,7 @@ def main(args):
     action.move_to_element(export_list).click().perform()
     export_csv = driver.find_element(by=By.ID, value="menuitem-1177")
     action.move_to_element(export_csv).click().perform()
-    sleep(10)
+    sleep(3)
     print('Done!')
 
 

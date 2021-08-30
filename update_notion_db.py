@@ -52,6 +52,8 @@ def main(args: argparse.Namespace) -> None:
     for i, row in enumerate(csv_reader):
         if i == 0:
             continue # Skip header
+        # Remove BiBTeX capitalization
+        row['Title'] = row['Title'].replace('{', '').replace('}','')
         matches = [
             hamming_distance(row['Title'].lower(), page['Title'].lower()) < args.max_distance
             for page in notion.pages
@@ -79,6 +81,6 @@ if __name__ == "__main__":
     parser.add_argument("-c", "--config", help="Config file", required=True)
     parser.add_argument("-d", "--database", help="Database to update", required=True)
     parser.add_argument("-t", "--token", help="Notion API token", required=True)
-    parser.add_argument("-m", "--max_distance", help="Maximum accepted Hamming distance for not filtering", default=3)
+    parser.add_argument("-m", "--max_distance", help="Maximum accepted Hamming distance for not filtering", default=1)
     args = parser.parse_args()
     main(args)

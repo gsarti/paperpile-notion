@@ -1,0 +1,91 @@
+name: cli
+help: Paperpile Notion Client
+version: 0.1.0
+
+commands:
+- name: update
+  help: Run the CSV export and the DB update end-to-end.
+
+  args:
+  - name: dir_id
+    required: true
+    help: ID of the Paperpile folder that needs to be downloaded.
+  - name: db_id
+    required: true
+    help: ID of the Notion database that needs to be updated
+
+
+  flags:
+  - long: --config
+    short: -c
+    default: config.yaml
+    help: "Path to the YAML configuration used to parse categories and venues (default: config.yaml)."
+  - long: --input_dir
+    short: -d
+    default: "${HOME}/Downloads"
+    help: "Path to the directory containing the downloaded file (default: ~/Downloads)"
+  environment_variables:
+  - name: notion_api_key
+    help: The API key for the Notion Integration added to the selected database
+    required: true
+  - name: google_mail
+    help: Your Gmail address associated to the Paperpile profile.
+    required: true
+  - name: google_pwd
+    help: Password of the Google Account associated to the Paperpile profile.
+    required: true
+
+- name: notion
+  short: nn
+  help: Notion interface
+
+  commands:
+  - name: update_db
+    help: Update a Notion DB using a CSV downloaded from Paperpile.
+
+    args:
+    - name: db_id
+      required: true
+      help: ID of the Notion database that needs to be updated
+    - name: input
+      required: true
+      help: Path to the CSV file extracted from Paperpile
+    
+    flags:
+    - long: --config
+      short: -c
+      default: config.yaml
+      help: "Path to the YAML configuration used to parse categories and venues (default: config.yaml)."
+
+    examples:
+    - cli notion update_db 321589dbce9b123488aa1b439c621ba7 data.csv
+    - cli notion update_db 321589dbce9b123488aa1b439c621ba7 data.csv -c config.yaml
+
+    environment_variables:
+    - name: notion_api_key
+      help: The API key for the Notion Integration added to the selected database
+      required: true
+
+- name: paperpile
+  short: pp
+  help: Paperpile interface
+
+  commands:
+    - name: download_dir
+      help: Download a paper folder from Paperpile in CSV format.
+
+      args:
+        - name: dir_id
+          required: true
+          help: ID of the Paperpile folder that needs to be downloaded.
+      
+      examples:
+      - cli paperpile download_dir pp-folder-2cb1833f-582f-0000-ad59-567be5718692
+
+      environment_variables:
+      - name: google_mail
+        help: Your Gmail address associated to the Paperpile profile.
+        required: true
+      - name: google_pwd
+        help: Password of the Google Account associated to the Paperpile profile.
+        required: true
