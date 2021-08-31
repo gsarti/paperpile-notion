@@ -20,6 +20,13 @@ commands:
     short: -c
     default: config.yaml
     help: "Path to the YAML configuration used to parse categories and venues (default: config.yaml)."
+  - long: --cookies_path
+    short: -p
+    default: cookies.pkl.zip
+    help: |
+      "Path to the password-protected zipped file containing a pickle of cookies to avoid Google login."
+      "This is necessary when running on an unknown machine (e.g. Github actions in container)."
+      "In that case, a password must also be specified via the environment variable COOKIES_PWD"
   - long: --input_dir
     short: -d
     default: "${HOME}/Downloads"
@@ -34,6 +41,8 @@ commands:
   - name: google_pwd
     help: Password of the Google Account associated to the Paperpile profile.
     required: true
+  - name: cookies_pwd
+    help: Password to unzip the cookies compressed file. Required only when Google login is not possible.
 
 - name: notion
   short: nn
@@ -79,6 +88,14 @@ commands:
           required: true
           help: ID of the Paperpile folder that needs to be downloaded.
       
+      flags:
+        - long: --cookies_path
+          short: -p
+          default: cookies.pkl.zip
+          help: |
+            "Path to the password-protected zipped file containing a pickle of cookies to avoid Google login."
+            "This is necessary when running on an unknown machine (e.g. Github actions in container)."
+            "In that case, a password must also be specified via the environment variable COOKIES_PWD"
       examples:
       - cli paperpile download_dir pp-folder-2cb1833f-582f-0000-ad59-567be5718692
 
@@ -89,3 +106,5 @@ commands:
       - name: google_pwd
         help: Password of the Google Account associated to the Paperpile profile.
         required: true
+      - name: cookies_pwd
+        help: Password to unzip the cookies compressed file. Required only when Google login is not possible.
