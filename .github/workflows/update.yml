@@ -33,11 +33,11 @@ jobs:
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional, disables headless mode
     - name: Run update script
       env:
-        NOTION_API_KEY: ${{ secrets.NotionAPIKey }}
-        GOOGLE_MAIL: ${{ secrets.GoogleMail }}
-        GOOGLE_PWD: ${{ secrets.GooglePassword }}
-        NOTION_DB_ID: ${{ secrets.NotionDBId }}
-        PAPERPILE_FOLDER_ID: ${{ secrets.PaperpileFolderId }}
+        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+        GOOGLE_MAIL: ${{ secrets.GOOGLE_MAIL }}
+        GOOGLE_PWD: ${{ secrets.GOOGLE_PASSWORD }}
+        NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+        PAPERPILE_FOLDER_ID: ${{ secrets.PAPERPILE_FOLDER_ID }}
         DISPLAY: :99
       run: |
         ./cli update "$PAPERPILE_FOLDER_ID" "$NOTION_DB_ID"
