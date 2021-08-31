@@ -1,6 +1,6 @@
 # Update of Notion DB
 
-name: Manual update
+name: Update the Notion DB end-to-end manually or on push
 
 on:
   push:
@@ -38,6 +38,7 @@ jobs:
         GOOGLE_PWD: ${{ secrets.GOOGLE_PASSWORD }}
         NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
         PAPERPILE_FOLDER_ID: ${{ secrets.PAPERPILE_FOLDER_ID }}
+        COOKIES_PWD: ${{ secrets.COOKIES_PWD }}
         DISPLAY: :99
       run: |
         ./cli update "$PAPERPILE_FOLDER_ID" "$NOTION_DB_ID"

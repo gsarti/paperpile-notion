@@ -46,7 +46,7 @@ def main(args):
             driver.get("https://paperpile.com")
             try:
                 with zipfile.ZipFile(args.cookies_path, 'r') as zip_cookies:
-                    zip_cookies.extractall(path='./', pwd=bytes(args.cookies_pwd, encoding="utf-8"))
+                    zip_cookies.extractall(path='./', pwd=bytes(args.cookies_pwd, encoding="utf-8") if args.cookies_pwd else None)
                 cookies = pickle.load(open(args.cookies_path[:-4], "rb"))
                 for cookie in cookies:
                     driver.add_cookie(cookie)
