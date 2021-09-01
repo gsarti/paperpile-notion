@@ -79,3 +79,5 @@ conferences:
     short: NGT
   - name: Cognitive Modeling and Computational Linguistics
     short: CMCL
+  - name: Findings of the Association for Computational Linguistics
+    short: Findings
