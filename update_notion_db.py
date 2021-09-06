@@ -25,10 +25,15 @@ def check_identical(entry: Dict[str, Dict[str, Any]], page: Dict[str, Any]) -> b
             if key == 'Status' and val == 'Reading':
             	continue
             if isinstance(val, str):
-                if entry[key]['value'] != val:
-                    return False
+                try:
+                    if entry[key]['value'] != val:
+                        print(f"Found mismatching key '{key}' with values {entry[key]['value']} (Paperpile) and {val} (Notion)")
+                        return False
+                except KeyError:
+                    raise AttributeError(f"Attribute {key} found with value {val} in Notion, but missing in Paperpile.")
             elif isinstance(val, list):
                 if any([x not in val for x in entry[key]['value']]):
+                    print(f"[bright_magenta]Found[/bright_magenta] mismatching key '{key}' with values {entry[key]['value']} (Paperpile) and {val} (Notion)")
                     return False
         return True
 

@@ -16,13 +16,15 @@ def format_entry(entry: Dict[str, str], journals: List[Dict[str, str]], conferen
             venue = [j['short'] for j in journals if j['name'] == entry['Full journal'].strip()]
         else:
             venue = [j['short'] for j in journals if j['name'] == entry['Journal'].strip()]
+        if not venue:
+            venue = [entry['Journal'].strip()[:100]]
     elif entry['Item type'] == 'Conference Paper':
         venue = [
             c['short'] for c in conferences if c['name'] == match(
             entry['Proceedings title'].strip().replace('{','').replace('}',''), [c['name'] for c in conferences]
         )]
         if not venue:
-            venue = [entry['Proceedings title'].strip()]
+            venue = [entry['Proceedings title'].strip()[:100]]
     elif entry['Item type'] == 'Preprint Manuscript':
         venue = [entry['Archive prefix'].strip()]
     elif entry['Item type'] == 'Book Chapter':
@@ -35,6 +37,10 @@ def format_entry(entry: Dict[str, str], journals: List[Dict[str, str]], conferen
         venue.append('arXiv')
     else:
         selected_link = links[0]
+    # Multichoice don't accept commas and maybe other punctuation, too
+    for i, v in enumerate(venue):
+        exclude = set([','])
+        venue[i] = ''.join(ch for ch in v if ch not in exclude)
     date = entry['Date published'].strip() if 'Date published' in entry.keys() else ''
     if len(date) > 10:
         date = date[:10]
