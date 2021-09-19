@@ -81,3 +81,5 @@ conferences:
     short: CMCL
   - name: Findings of the Association for Computational Linguistics
     short: Findings
+  - name: Nordic Conference on Computational Linguistics
+    short: NoDaLiDa

@@ -22,7 +22,8 @@ def hamming_distance(x, y):
 
 def check_identical(entry: Dict[str, Dict[str, Any]], page: Dict[str, Any]) -> bool:
         for key, val in [(k,v) for k,v in page.items() if k not in ['id', 'Institutions', 'Date', 'Code']]:
-            if key == 'Status' and val == 'Reading':
+            # If the paper is marked as "Reading" in Notion and still "To Read" in Paperpile, it is not updated
+            if key == 'Status' and val == 'Reading' and key not in entry.keys():
             	continue
             if isinstance(val, str):
                 try:
