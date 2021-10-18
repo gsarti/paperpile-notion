@@ -26,7 +26,10 @@ def format_entry(entry: Dict[str, str], journals: List[Dict[str, str]], conferen
         if not venue:
             venue = [entry['Proceedings title'].strip()[:100]]
     elif entry['Item type'] == 'Preprint Manuscript':
-        venue = [entry['Archive prefix'].strip()]
+        if "openreview" in entry['URLs'].strip().split(';')[0]:
+            venue = ["OpenReview"]
+        else:
+            venue = [entry['Archive prefix'].strip()]
     elif entry['Item type'] == 'Book Chapter':
         venue = [entry['Book title'].strip()]
     # Arxiv links are privileged
